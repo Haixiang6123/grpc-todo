@@ -1,0 +1,17 @@
+package todo;
+
+service TodoService {
+  rpc GetTodos (GetTodosReq) returns (GetTodosRsp);
+}
+
+message GetTodosReq {}
+
+message GetTodosRsp {
+  repeated Todo todos = 1;
+}
+
+message Todo {
+  required int32 id = 1;
+  required string title = 2;
+  required string description = 3;
+}
