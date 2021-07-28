@@ -18,11 +18,17 @@ const todos = [
 const getTodosImpl = (call, callback) => {
   callback(null, { todos });
 }
+const addTodoImpl = (call, callback) => {
+  const { todo } = call.request
+  todos.push(todo)
+  callback(null, { todos })
+}
 
 const main = () => {
   const server = new grpc.Server()
   server.addService(todoPkg.TodoService.service, {
     getTodos: getTodosImpl,
+    addTodo: addTodoImpl,
   })
   server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
     server.start()

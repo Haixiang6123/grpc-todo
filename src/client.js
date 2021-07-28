@@ -13,6 +13,11 @@ const main = () => {
   client.getTodos({}, (err, response) => {
     console.log('所有 todo: ', response.todos)
   })
+  client.addTodo({
+    todo: { id: 4, title: '第四条', desc: '要开心' }
+  }, (err, response) => {
+    console.log('添加后的 todos', response)
+  })
 }
 
 main()
